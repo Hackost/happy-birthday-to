@@ -1,6 +1,4 @@
-// =======================
 // 🎂 Countdown Timer
-// =======================
 const timer = document.getElementById("timer");
 function updateCountdown() {
   const endOfDay = new Date();
@@ -20,11 +18,8 @@ function updateCountdown() {
   timer.textContent = `${hours}h ${minutes}m ${seconds}s`;
 }
 setInterval(updateCountdown, 1000);
-updateCountdown(); // initialize immediately
 
-// =======================
 // 💬 Typed Message
-// =======================
 const message = "On your special day, I just want to remind you how amazing you are — kind, strong, and full of light. 💖\n\nMay your dreams shine as bright as your smile!";
 let index = 0;
 function typeMessage() {
@@ -35,62 +30,72 @@ function typeMessage() {
     setTimeout(typeMessage, 60);
   }
 }
-window.addEventListener("load", typeMessage);
+window.onload = typeMessage;
 
-// =======================
 // 🎉 Confetti Celebration
-// =======================
-function runConfetti(count = 150, spread = 80, originY = 0.6) {
-  confetti({ particleCount: count, spread: spread, origin: { y: originY } });
-}
-setTimeout(() => runConfetti(200, 100), 2500);
+setTimeout(() => {
+  confetti({
+    particleCount: 200,
+    spread: 100,
+    origin: { y: 0.6 },
+  });
+}, 2500);
 
-// =======================
-// 🖼️ Swiper Gallery Initialization
-// =======================
+// 🖼️ Swiper Initialization
 var swiper = new Swiper(".mySwiper", {
   loop: true,
   pagination: { el: ".swiper-pagination", clickable: true },
   navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-  on: {
-    slideChange: function () {
-      document.querySelectorAll(".caption").forEach((cap) => (cap.style.opacity = 0));
-      const active = document.querySelector(".swiper-slide-active .caption");
-      if (active) active.style.opacity = 1;
-    },
-  },
 });
 
-// =======================
 // 💫 Slide-In Animation for Memory Cards
-// =======================
 const cards = document.querySelectorAll(".memory-card");
+
 function revealOnScroll() {
   const triggerBottom = window.innerHeight * 0.85;
   cards.forEach((card) => {
     const cardTop = card.getBoundingClientRect().top;
-    if (cardTop < triggerBottom) card.classList.add("show");
+    if (cardTop < triggerBottom) {
+      card.classList.add("show");
+    }
   });
 }
+
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 
-// =======================
-// 🎁 Popup / Surprise Function
-// =======================
+// 🎁 Button Surprise Function
 function showSurprise() {
-  runConfetti(120, 80);
+  confetti({
+    particleCount: 150,
+    spread: 80,
+    origin: { y: 0.6 },
+  });
+
+  setTimeout(() => {
+    alert("💖 Every memory with you is special — more surprises coming soon!");
+  }, 500);
+}
+
+// 🌸 Popup Functions
+function showSurprise() {
+  confetti({
+    particleCount: 120,
+    spread: 80,
+    origin: { y: 0.6 },
+  });
+
+  // Show the popup after confetti
   setTimeout(() => {
     document.getElementById("surprise-popup").style.display = "flex";
   }, 800);
 }
+
 function closePopup() {
   document.getElementById("surprise-popup").style.display = "none";
 }
 
-// =======================
 // 💖 Floating Hearts / Sparkles Background
-// =======================
 const canvas = document.getElementById("sparkleCanvas");
 const ctx = canvas.getContext("2d");
 let particles = [];
@@ -102,6 +107,7 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
+// Create particles
 function createParticles() {
   const colors = ["#ffb6c1", "#ffffff", "#ffd6e6", "#ff69b4"];
   for (let i = 0; i < 40; i++) {
@@ -115,6 +121,7 @@ function createParticles() {
     });
   }
 }
+
 function drawHeart(x, y, size, color) {
   ctx.save();
   ctx.translate(x, y);
@@ -126,6 +133,8 @@ function drawHeart(x, y, size, color) {
   ctx.fill();
   ctx.restore();
 }
+
+// Animate particles
 function animateParticles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   for (let p of particles) {
@@ -145,14 +154,29 @@ function animateParticles() {
   }
   requestAnimationFrame(animateParticles);
 }
+
 createParticles();
 animateParticles();
 
-// =======================
-// 🔊 Background Music Toggle
-// =======================
+// 🩷 Show caption for active slide
+var swiper = new Swiper(".mySwiper", {
+  loop: true,
+  pagination: { el: ".swiper-pagination", clickable: true },
+  navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+  on: {
+    slideChange: function () {
+      document.querySelectorAll(".caption").forEach((cap) => (cap.style.opacity = 0));
+      const active = document.querySelector(".swiper-slide-active .caption");
+      if (active) {
+        active.style.opacity = 1;
+      }
+    },
+  },
+});
+
 const bgMusic = document.getElementById('bg-music');
 const musicToggle = document.getElementById('music-toggle');
+
 musicToggle.addEventListener('click', () => {
   if(bgMusic.paused){
     bgMusic.play();
@@ -163,52 +187,71 @@ musicToggle.addEventListener('click', () => {
   }
 });
 
-// =======================
-// 🖼️ Cute Gallery Modal
-// =======================
 const galleryBtn = document.getElementById('cute-gallery-btn');
 const galleryModal = document.getElementById('cute-gallery-modal');
 const closeModal = galleryModal.querySelector('.close');
 
-galleryBtn.addEventListener('click', () => galleryModal.style.display = 'block');
-closeModal.addEventListener('click', () => galleryModal.style.display = 'none');
-window.addEventListener('click', (e) => { if(e.target === galleryModal) galleryModal.style.display = 'none'; });
+galleryBtn.addEventListener('click', () => {
+  galleryModal.style.display = 'block';
+});
 
-// =======================
-// 🎤 Voice Message Modal
-// =======================
+closeModal.addEventListener('click', () => {
+  galleryModal.style.display = 'none';
+});
+
+// Close when clicking outside modal content
+window.addEventListener('click', (e) => {
+  if(e.target === galleryModal){
+    galleryModal.style.display = 'none';
+  }
+});
+
 const voiceBtn = document.getElementById('voice-msg-btn');
 const voiceModal = document.getElementById('voice-modal');
 const voiceClose = voiceModal.querySelector('.close');
 
-voiceBtn.addEventListener('click', () => voiceModal.style.display = 'block');
-voiceClose.addEventListener('click', () => voiceModal.style.display = 'none');
-window.addEventListener('click', (e) => { if(e.target === voiceModal) voiceModal.style.display = 'none'; });
+voiceBtn.addEventListener('click', () => {
+  voiceModal.style.display = 'block';
+});
+
+voiceClose.addEventListener('click', () => {
+  voiceModal.style.display = 'none';
+});
+
+// Close when clicking outside modal content
+window.addEventListener('click', (e) => {
+  if(e.target === voiceModal){
+    voiceModal.style.display = 'none';
+  }
+});
 
 const audio = document.getElementById('voice-audio');
 document.getElementById('play-btn').addEventListener('click', ()=> audio.play());
 document.getElementById('pause-btn').addEventListener('click', ()=> audio.pause());
 document.getElementById('mute-btn').addEventListener('click', ()=> audio.muted = !audio.muted);
 
-// =======================
-// 🌟 Welcome Popup on Page Load
-// =======================
+// Show popup on page load
 window.addEventListener('load', () => {
   const popup = document.getElementById('welcome-popup');
   popup.classList.add('show');
 });
 
-// Popup Buttons → YES / NO
+// Buttons
 const yesBtn = document.getElementById('popup-yes-btn');
 const noBtn = document.getElementById('popup-no-btn');
 const popup = document.getElementById('welcome-popup');
 const exitOverlay = document.getElementById('exit-overlay');
 
-yesBtn.addEventListener('click', () => popup.classList.remove('show'));
+// YES → continue
+yesBtn.addEventListener('click', () => {
+  popup.classList.remove('show');
+});
+
+// NO → fade to black and close tab
 noBtn.addEventListener('click', () => {
   exitOverlay.classList.add('show');
   setTimeout(() => {
-    window.close();
-    window.location.href = "about:blank";
+    window.close(); // only works if user opened in new tab
+    window.location.href = "about:blank"; // fallback
   }, 1500);
 });
