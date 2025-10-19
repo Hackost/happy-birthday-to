@@ -891,14 +891,3 @@ body {
   50% { opacity: 1; }
   100% { transform: translateY(-10vh) scale(1) rotate(360deg); opacity: 0; }
 }
-
-.popup-overlay {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.6s ease, visibility 0.6s ease;
-}
-
-.popup-overlay.show {
-  opacity: 1;
-  visibility: visible;
-}
