@@ -270,3 +270,7 @@ window.addEventListener("load", () => {
       }, 1500);
     });
   }
+
+document.addEventListener("DOMContentLoaded", () => {
+  console.log(document.getElementById("popup-yes-btn")); // should not be null
+});
