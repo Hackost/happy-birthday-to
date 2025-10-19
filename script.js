@@ -30,7 +30,15 @@ function typeMessage() {
     setTimeout(typeMessage, 60);
   }
 }
-window.onload = typeMessage;
+
+window.addEventListener("load", () => {
+  typeMessage(); // start typing message
+  const popup = document.getElementById('welcome-popup');
+  if (popup) {
+    setTimeout(() => popup.classList.add('show'), 800); // popup fade-in delay
+  }
+});
+
 
 // 🎉 Confetti Celebration
 setTimeout(() => {
@@ -255,3 +263,4 @@ noBtn.addEventListener('click', () => {
     window.location.href = "about:blank"; // fallback
   }, 1500);
 });
+
