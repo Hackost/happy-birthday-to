@@ -238,29 +238,39 @@ document.getElementById('play-btn').addEventListener('click', ()=> audio.play())
 document.getElementById('pause-btn').addEventListener('click', ()=> audio.pause());
 document.getElementById('mute-btn').addEventListener('click', ()=> audio.muted = !audio.muted);
 
-// Show popup on page load
-window.addEventListener('load', () => {
-  const popup = document.getElementById('welcome-popup');
-  popup.classList.add('show');
+window.addEventListener("load", () => {
+  // 💬 start typing message
+  typeMessage();
+
+  // 🌸 show welcome popup smoothly
+  const popup = document.getElementById("welcome-popup");
+  const yesBtn = document.getElementById("popup-yes-btn");
+  const noBtn = document.getElementById("popup-no-btn");
+  const exitOverlay = document.getElementById("exit-overlay");
+
+  if (popup) {
+    setTimeout(() => popup.classList.add("show"), 800); // fade-in delay
+  }
+
+  // ✅ YES → close popup and start music
+  if (yesBtn) {
+    yesBtn.addEventListener("click", () => {
+      popup.classList.remove("show");
+      const music = document.getElementById("bg-music");
+      if (music) music.play();
+    });
+  }
+
+  // 😔 NO → fade screen
+  if (noBtn) {
+    noBtn.addEventListener("click", () => {
+      exitOverlay.classList.add("show");
+      setTimeout(() => {
+        window.location.href = "about:blank";
+      }, 1500);
+    });
+  }
+
+  // Initial memory card reveal
+  revealOnScroll();
 });
-
-// Buttons
-const yesBtn = document.getElementById('popup-yes-btn');
-const noBtn = document.getElementById('popup-no-btn');
-const popup = document.getElementById('welcome-popup');
-const exitOverlay = document.getElementById('exit-overlay');
-
-// YES → continue
-yesBtn.addEventListener('click', () => {
-  popup.classList.remove('show');
-});
-
-// NO → fade to black and close tab
-noBtn.addEventListener('click', () => {
-  exitOverlay.classList.add('show');
-  setTimeout(() => {
-    window.close(); // only works if user opened in new tab
-    window.location.href = "about:blank"; // fallback
-  }, 1500);
-});
-
