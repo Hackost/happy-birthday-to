@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Content</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas&display=swap" rel="stylesheet">
+
+<style>
+/* Smooth Scrolling */
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: 'Mountains of Christmas', cursive;
+  background: linear-gradient(to bottom, #df5ace 0%, #5e38a9 100%);
+  color: rgb(16, 16, 16);
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+/* Fade-in Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s forwards;
+}
+@keyframes fadeUp {
+  to { opacity:1; transform: translateY(0); }
+}
+
+/* Open Letter Button */
+.open-letter-btn {
+  background: linear-gradient(90deg, #f59fd4, #0800f4);
+  color: black;
+  font-family: 'Mountains of Christmas', cursive;
+  font-size: 1.5rem;
+  padding: 15px 30px;
+  border-radius: 15px;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  margin-bottom: 50px;
+  z-index: 10;
+  position: relative;
+}
+.open-letter-btn:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+
+/* Envelope */
+.envelope-container { position: relative; width: 300px; height: 200px; perspective: 1000px; margin-bottom:50px; }
+.envelope {
+  width:100%; height:100%; background:#bdbbbb; border-radius:10px; position:absolute; transform-origin:bottom;
+  transition: transform 1s ease; box-shadow:0 8px 20px rgba(0,0,0,0.4); cursor:pointer; z-index:2;
+}
+.envelope.open { transform: rotateX(-180deg); }
+
+/* Seal */
+.seal {
+  position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+  width: 40px; height: 40px; background: radial-gradient(circle at 30% 30%, #ff1493, #de73d0);
+  border-radius: 50%; box-shadow:0 0 10px #ff69b4; z-index:3; transition: transform 0.5s, opacity 0.5s;
+}
+.seal.break { transform: scale(0.1) rotate(-90deg); opacity:0; }
+
+/* Letter */
+.letter {
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  background:#fff; border-radius:10px; color:black; font-family:'Mountains of Christmas', cursive;
+  display:flex; flex-direction:column; justify-content:flex-start; align-items:center;
+  padding:30px; line-height:1.7rem; /* extra space */
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+  transform:translateY(100%) rotate(-10deg); opacity:0; transition: transform 1s ease, opacity 1s ease;
+  z-index:1; overflow-y:auto;
+}
+.letter.show { transform:translateY(0) rotate(0deg); opacity:1; animation:bounceLetter 1s ease forwards; }
+
+@keyframes bounceLetter {
+  0% { transform: translateY(100%) rotate(-10deg); }
+  60% { transform: translateY(-10px) rotate(2deg); }
+  80% { transform: translateY(5px) rotate(-1deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* Pages inside letter */
+.page { display:none; flex-direction:column; align-items:center; }
+.page.active { display:flex; }
+.page p { margin-bottom:10px; text-align:center; }
+.nav-btns { margin-top:10px; }
+.nav-btns button {
+  background:#e33ecd; color:rgb(177, 23, 23); font-family:'Mountains of Christmas', cursive;
+  font-size:1rem; padding:5px 15px; border-radius:10px; border:none; margin:0 5px; cursor:pointer;
+}
+
+/* Confetti */
+.confetti-piece { position:absolute; width:10px; height:10px; opacity:0.9; border-radius:3px; pointer-events:none; }
+
+/* Videos */
+.video-container { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; max-width:1000px; margin-bottom:80px; /* extra space */ }
+.video-container video { width:450px; max-width:90%; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.5); transition: transform 0.3s; }
+.video-container video:hover { transform: scale(1.05); }
+
+/* Back Button */
+.back-btn { text-decoration:none; color:#de73d0; font-size:1.2rem; border:2px solid #de73d0; padding:10px 20px; border-radius:15px; transition:background 0.3s, color 0.3s; }
+.back-btn:hover { background:#de73d0; color:black; }
+
+/* Responsive */
+@media(max-width:768px){
+  .video-container video { width:90%; }
+  .envelope-container { width:250px; height:170px; }
+  .letter { padding:20px; line-height:1.5rem; }
+}
+@media(max-width:480px){
+  h1 { font-size:2rem; }
+  .open-letter-btn { font-size:1.2rem; padding:12px 25px; }
+  .letter { padding:15px; line-height:1.4rem; }
+}
+
+/* Custom scrollbar for letter */
+.letter::-webkit-scrollbar {
+  width: 8px;
+}
+
+.letter::-webkit-scrollbar-track {
+  background: #b61515;
+  border-radius: 10px;
+}
+
+.letter::-webkit-scrollbar-thumb {
+  background: #de73d0;
+  border-radius: 10px;
+}
+
+.letter::-webkit-scrollbar-thumb:hover {
+  background: #ff69b4;
+}
+</style>
+</head>
+<body>
+
+<u><h1 class="fade-in">This content is only for you</h1></u>
+
+<button class="open-letter-btn fade-in">📬 A special note for you</button>
+
+<div class="envelope-container fade-in">
+  <div class="envelope"></div>
+  <div class="seal"></div>
+
+  <div class="letter">
+    <!-- Page 1 -->
+    <div class="page active">
+      <p id="typed-text"></p>
+    </div>
+    <!-- Page 2 -->
+    <div class="page">
+      <p id="typed-text2"></p>
+    </div>
+    <div class="nav-btns">
+      <button id="prev">⬅ Previous</button>
+      <button id="next">Next ➡</button>
+    </div>
+  </div>
+</div>
+
+<audio id="open-sound" src="sounds/envelope-open.mp3"></audio>
+<div id="confetti-container"></div>
+
+<div class="video-container fade-in">
+  <video controls>
+    <source src="videos/video1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <video controls>
+    <source src="videos/video2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+<!-- 💌 Message Box Section -->
+<section class="message-box fade-in">
+  <u><h2>💖 A Few Words from My Heart 💖</h2></u>
+  <div class="message-content">
+    <strong><p>this video is just for that tell you i made this with my own and this is my 1st best project of css and your that video is 🙂🥲🤣🤣cake uska to pucho he mat 🙂🥲🤣🤣🙂🥲🤣🤣 </p></strong>
+  </div>
+</section>
+
+
+<a href="index.html" class="back-btn fade-in">⬅ Back</a>
+
+<script>
+// Elements
+const btn = document.querySelector('.open-letter-btn');
+const envelope = document.querySelector('.envelope');
+const letter = document.querySelector('.letter');
+const seal = document.querySelector('.seal');
+const confettiContainer = document.getElementById('confetti-container');
+const audio = document.getElementById('open-sound');
+let confettiDone = false;
+
+// Pages
+const pages = document.querySelectorAll('.page');
+let currentPage = 0;
+const nextBtn = document.getElementById('next');
+const prevBtn = document.getElementById('prev');
+
+// Typing effect
+function typeText(elementId, text, speed=30){
+  const el = document.getElementById(elementId);
+  el.textContent='';
+  let i=0;
+  function type(){ if(i<text.length){ el.textContent+=text.charAt(i); i++; setTimeout(type,speed); } }
+  type();
+}
+
+// Confetti
+function createConfetti(){
+  for(let i=0;i<100;i++){
+    const c=document.createElement('div');
+    c.classList.add('confetti-piece');
+    const colors=['#f59fd4','#de73d0','#ff69b4','#ffffff','#ff1493'];
+    c.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];
+    c.style.left=Math.random()*100+'vw';
+    c.style.top='-10px';
+    c.style.width=c.style.height=5+Math.random()*10+'px';
+    confettiContainer.appendChild(c);
+    c.animate([{transform:`translateY(0) rotate(0deg)`, opacity:1},{transform:`translateY(${window.innerHeight+100}px) rotate(${Math.random()*720}deg)`, opacity:0}], {duration:3000+Math.random()*2000, iterations:1, easing:'ease-out'});
+    setTimeout(()=>c.remove(),5000);
+  }
+}
+
+// Open letter
+btn.addEventListener('click',()=>{
+  envelope.classList.add('open');
+  letter.classList.add('show');
+  seal.classList.add('break');
+  audio.play();
+  if(!confettiDone){ createConfetti(); confettiDone=true; }
+
+  const page2Text = "🌸 May all your dreams come true! Keep smiling and shining ✨ Remember, you're amazing!";
+  typeText('typed-text', page1Text);
+  typeText('typed-text2', page2Text);
+});
+
+const page1Text = `I m not writing this for you to read — this is just something I need to say, so my heart can
+rest.
+We ve known each other for a long time, almost 5 to 6 years — from childhood days, small
+talks, laughter, and the comfort that came with knowing someone who s been there through
+everything. You were more than just a friend — you felt like family, like home.
+Over the last few years, we talked more deeply, shared thoughts, and cared for each other
+in ways words can t fully explain. You made me feel understood — and I always respected
+and cared for you from my heart.
+So when you suddenly started pulling away… ignoring messages, talking less, or
+disappearing — it hurt deeply. I didn t understand why. I kept asking myself if I did
+something wrong, or if I wasn t good enough.
+But maybe it s not about fault or worth. Maybe you just needed space, time, or a different
+path — and I have to accept that. Still, I want you to know: I never meant to hurt you. If I
+ever said or did anything that made you uncomfortable, I m truly sorry.
+Sometimes when I tried to talk about how I felt, you called it “drama” or “notanki,” and that
+really hurt. I wasn t trying to fight or argue — I was just trying to express what I felt inside.
+Maybe I couldn t say things the right way every time, but my intention was never to create
+problems. I just wanted you to understand me, not misunderstand me. I hope one day you
+realize that what I said came from care, not from anger.
+I m not angry, and I don t hate you. I just miss the simplicity we once had — two friends
+who understood each other. You ll always have my respect and care, even if we never talk
+again.
+Sometimes love isn t about being together — it s about being thankful for what you shared.
+So, thank you for being part of my life, Rani. You ll always be remembered with kindness.
+— Harsh`;
+
+// Page navigation
+nextBtn.addEventListener('click',()=>{
+  pages[currentPage].classList.remove('active');
+  currentPage=(currentPage+1)%pages.length;
+  pages[currentPage].classList.add('active');
+});
+prevBtn.addEventListener('click',()=>{
+  pages[currentPage].classList.remove('active');
+  currentPage=(currentPage-1+pages.length)%pages.length;
+  pages[currentPage].classList.add('active');
+});
+
+// Click outside to close
+document.addEventListener('click',(e)=>{
+  if(letter.classList.contains('show')){
+    if(!letter.contains(e.target) && !btn.contains(e.target)){
+      envelope.classList.remove('open');
+      letter.classList.remove('show');
+      seal.classList.remove('break');
+    }
+  }
+});
+
+// Stagger fade-in delays
+const fadeElems = document.querySelectorAll('.fade-in');
+fadeElems.forEach((el, i) => { el.style.animationDelay = `${i * 0.3}s`; });
+</script>
+
+</body>
+</html>

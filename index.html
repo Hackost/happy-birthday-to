@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday 🎉 Rani</title>
+
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.google.com/specimen/Playwrite+DE+Grund+Guides" rel="stylesheet" />
+
+  <!-- Swiper (for image gallery) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+
+</head>
+
+<body class="main-page">
+
+<!-- Welcome Popup -->
+<div id="welcome-popup" class="popup-overlay">
+  <div class="popup-box">
+    <h2>💌 Hey...</h2>
+    <p>Before you go inside, I want to ask something.<br>Will you stay for a moment and see what I made from my heart and also with a promis you read inner of this page things i add in that and this is not for i want to interfare in your life this is  a gift i cant present you on your birthday and somtings i never tell  if yes then click on yes if no then click no i am not forcing but beach me collage ke krn thora paresan thy is liye late hua code karne me ?</p>
+    <div class="popup-buttons">
+      <button id="popup-yes-btn">Yes 💖</button>
+      <button id="popup-no-btn">No 😔</button>
+    </div>
+  </div>
+</div>
+
+<div id="exit-overlay"></div>
+
+<!-- Overlay fade-out if No -->
+<div id="exit-overlay"></div>
+
+  <audio id="bg-music" src="audio/bg-music.mp3" autoplay loop></audio>
+<button id="music-toggle" style="margin:20px; padding:10px 15px; border-radius:10px; border:none; cursor:pointer;">
+  🔇 Music Off
+</button>
+
+  <!-- 🌟 Floating Sparkle Hearts Background -->
+<canvas id="sparkleCanvas"></canvas>
+
+  <div class="container">
+    <!-- Decorative Background -->
+    <div class="hearts" aria-hidden="true"></div>
+
+    <!-- 🎂 Main Title -->
+    <u><h1 class="title">Happy Birthday Rani💖 </h1></u>
+    <div class="message-card">
+  <p>
+    Wishing you love, laughter, and endless joy today and always 💖  
+    I m not sending this to disturb you or bring back anything that s gone.  
+    I know some things end, and that s okay.  
+    <br><br>
+    This isn t me trying to reach out again — it s just something I made with care,  
+    like a small gift I never got to give you.  
+    Something that says: you were special, and you ll always have a place in my memories.  
+    <br><br>
+    It doesn t ask you to reply or remember — it s just a quiet corner of my heart  
+    I ve turned into words, code, and colors.  
+    <br><br>
+    If you ever see it, I just hope you smile once.  
+    Not because of me, but because you remember a moment that was once pure and good.
+  </p>
+</div>
+
+    <!-- Countdown Timer -->
+    <section class="countdown">
+      <u><h2>Time left until your special day ends:</h2></u>
+      <div id="timer" aria-live="polite"></div>
+    </section>
+
+<section class="gallery-section">
+  <div class="gallery-background">
+    <div class="hearts"></div> <!-- floating hearts -->
+
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide photo-card" data-caption="💫 That smile could light up the whole world 💖">
+          <img src="images/photo1.jpg" alt="Photo 1" />
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide photo-card" data-caption="🌸 A memory that still feels like sunshine ☀️">
+          <img src="images/photo2.jpg" alt="Photo 2" />
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide photo-card" data-caption="💖 Moments that time could never fade away 💫">
+          <img src="images/photo3.jpg" alt="Photo 3" />
+        </div>
+      </div>
+
+      <!-- Add navigation if needed -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Swiper Controls -->
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</section>
+
+    <!-- 💬 Message Section -->
+    <section class="message">
+      <u><h2>A Message for You</h2></u>
+      <p id="typed-message" aria-live="polite"></p>
+    </section>
+
+    <!-- 🌸 Memory Section Placeholder -->
+    <section class="memories">
+      <i><strong><u><h2>your Beautiful Memories in my mind 💭</h2></u></strong></i>
+      <div class="memory-grid">
+        <!-- Placeholder Cards -->
+        <div class="memory-card">
+          <img src="images/memory1.jpg" alt="Memory 1" />
+          <p>That smile that could light up any room 💫</p>
+        </div>
+        <div class="memory-card">
+          <img src="images/memory2.jpg" alt="Memory 2" />
+          <p>Moments that made everything brighter 🌸</p>
+        </div>
+        <div class="memory-card">
+          <img src="images/memory3.jpg" alt="Memory 3" />
+          <p>Every memory with you feels timeless 💕</p>
+        </div>
+
+        <div class="memory-card">
+          <img src="images/memory4.jpg" alt="Memory 4" />
+          <p>🌸 You’re not just a memory — you re my favorite chapter that I never want to end. 💕</p>
+        </div>
+
+        <div class="memory-card">
+          <img src="images/memory5.jpg" alt="Memory 5" />
+          <p> With you, even silence feels warm — like the world finally makes sense.💕</p>
+        </div>
+
+        <div class="memory-card">
+          <img src="images/memory6.jpg" alt="Memory 6" />
+          <p> 🌿 No matter where life takes us, our laughter and memories will always stay close to my heart.💕</p>
+        </div>
+
+        <div class="memory-card">
+          <img src="images/memory7.jpg" alt="Memory 7" />
+          <p> 🌿 Every laugh we share becomes a memory I hold close.
+Even the quiet moments with you feel like sunshine.
+I’m grateful for every second we spend together.💕</p>
+        </div>
+
+        <div class="memory-card">
+          <img src="images/memory8.jpg" alt="Memory 8" />
+          <p> 🌸 Your friendship is like a safe harbor in a stormy sea.
+With you, I can be myself, laugh endlessly, and dream freely.💕</p>
+        </div>
+
+        <div class="memory-card">
+          <img src="images/memory9.jpg" alt="Memory 9" />
+          <p> 💫 Some people leave footprints on your heart forever.
+You’ve filled mine with joy, trust, and countless beautiful memories.💕</p>
+        </div>
+
+        <div class="memory-card">
+          <img src="images/memory10.jpg" alt="Memory 10" />
+          <p> 💕 No distance or time can fade the bond we share.
+Every moment with you feels timeless and irreplaceable.💕</p>
+        </div>
+
+        <!-- 💖 Surprise / More Memories Button -->
+    <div class="action-section">
+     <button class="glow-btn" onclick="showSurprise()">💖 See More Memories</button>
+     </div>
+    </section>
+
+    <!-- 🌸 Surprise Popup Box -->
+<div id="surprise-popup" class="popup">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <h2>💖 My Little Surprise 💖</h2>
+    <p>niche ek button hai sab dekh fir waha ja vo this is for you me </p>
+    <img src="images/memory-special.jpg" alt="Special Memory" />
+  </div>
+</div>
+
+
+    <!-- 🎉 Ending Note -->
+    <u><i><strong><h2 class="fade-in">🎂 You’re one i — enjoy every moment! 🎂</h2></strong></i></u>
+    <img src="images/cake.jpg" alt="Birthday Cake" class="cake fade-in" />
+  </div>
+
+<div style="text-align:center; margin:50px 0;">
+  <a href="for-you.html" class="for-you-btn">🎁 This is for you</a>
+</div>
+
+<div id="cute-gallery-modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>💖 Your Cuteness Gallery 💖</h2>
+    <div class="gallery-container">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <!-- Slides go here -->
+          <div class="swiper-slide"><img src="images/cute1.jpg" alt="Cute 1"></div>
+          <div class="swiper-slide"><img src="images/cute2.jpg" alt="Cute 2"></div>
+          <div class="swiper-slide"><img src="images/cute3.jpg" alt="Cute 3"></div>
+          <div class="swiper-slide"><img src="images/cute4.jpg" alt="Cute 4"></div>
+          <div class="swiper-slide"><img src="images/cute5.jpg" alt="Cute 5"></div>
+          <div class="swiper-slide"><img src="images/cute6.jpg" alt="Cute 6"></div>
+          <div class="swiper-slide"><img src="images/cute7.jpg" alt="Cute 7"></div>
+          <div class="swiper-slide"><img src="images/cute8.jpg" alt="Cute 8"></div>
+          <div class="swiper-slide"><img src="images/cute9.jpg" alt="Cute 9"></div>
+          <div class="swiper-slide"><img src="images/cute10.jpg" alt="Cute 10"></div>
+          <!-- Add more slides as needed -->
+        </div>
+        <!-- Swiper navigation -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+    <textarea id="custom-note" placeholder="You know, no matter how much time passes — you ll never be the villain in my story.
+Youve always been that cute, slightly angry, childish soul who could make me smile even when I didn t want to.
+Sometimes you talk like a storm, sometimes you go quiet like the calm after it — but both sides are just you, and that s what makes you special.
+You re the kind of person who can light up a dull day just by being around, even if you re teasing, arguing, or pretending to be mad.
+
+I still remember every small thing — your laughter, your expressions, your small “angry looks.”
+You ve always been like a red cylinder — full of spark, warmth, and a little fire 🔥 that makes everything more alive.
+
+And just so you know, even if life changes, or we take different paths —
+youll always stay a main character in the happiest chapters of my heart.
+Because real connections dont fade; they just live quietly inside us, smiling when we remember them.
+and also i cant afford expensive things now in my this face.. or on your birthday day but i am a coder so ya i can  do some thing that i think make you smile...
+Youre not just beautiful in the way you look, but in the way you care, argue, laugh, and stay real.
+Thats rare — and I ll always be thankful for that kind of person you are." rows="4"></textarea>
+    <button id="voice-msg-btn" class="voice-btn">🎵 Add/Listen to Your Voice Message</button>
+  </div>
+</div>
+
+<div id="voice-modal" class="modal">
+  <div class="modal-content voice-content">
+    <span class="close">&times;</span>
+    <h2>🖤 Your Special Voice Message 🖤</h2>
+    <textarea id="voice-text" placeholder="**“Dekh, hum kavi pareshaan tumhe karne nahi aaye the. Agar lagta hai aisa hua, toh maaf karna. Mera kabhi irada tumhe takleef dene ka nahi tha.
+Agar mujhe pehle hi pata hota ki meri baaton se tum hurt ho jaogi, toh shayad main door chala jaata — na isliye ki main chahta tha, balki isliye ki main tumhe dukh nahi dena chahta tha.
+
+Main bas itna chahta tha ki tum mujhe samjho — poochho ki main kabhi gussa kyu ho jaata hoon, ya thoda possessive kyu lagta hoon.
+Woh sab meri kuch kuch galtiya v thi i acppet that lekin yaar hum try to kr rhy rhy change hone ka tu bolti thi nasa na ha yaar hum ko khud lagta tha bura kitna kosty haar wakt sab bolta hai choro nhi chor paty hum v chaty chorre lekin yaar you dont kown filal kitna kuch ander se sahh rhy pta hai tera pass v apna problem lekin hum usko egnor nhi karty tu batye to hum jaan lga de uska kuch karne ko yaar mer famliy spport na 0 ho chukka hai apn av bhar se v bass nikl rhii life nikl rhy 
+, bas alag tarike se nikl rhi kya he bolu kab se try to sab thik karne ka kr rhy hamsesa kuch na kuch ho he jata phele sochy thy 12th hua our kaam sab padhi sab kar ke sab apne uper ghar ka lenge maa ko aram dege vo v karne ka mokka nhi mila avi karty hai kuch to apna he bhai beach me a kr sab karab kr deta kavi jaan se maardega eysa ladne lagta bhiya hai hath v nhi chalty kavi paisa ko le kr kavi kya lekin khersab chal rha sambhalne ka kosis kr rhy ye saal to sab jagha ja ke v karab nhi he hua paisa ke krn but i am promissing next 4 year ye harsh nhi rhyga 
+ab ye padhh
+.
+Main jab tumhe chidhata tha, tang karta tha — woh kabhi galat niyat se nahi tha. Mujhe bas tumhari smile dekhni hoti thi.
+Tumhari ek hasi mere din ko khubsurat bana deti thi.
+
+Aur dekh, mere paas tumhari ek bhi photo nahi hai jisse main is gallery mein daal sakun,
+i think off taht kki ek gallery bante jime shat me hota but uska liye v nhi lekin koi na tera picture hai kaam chal jayga 
+
+I just wanted to say one last thing clearly — I never had any intention to provoke or question your character. That misunderstanding went too far, and I truly regret that. I always respected you and never wanted you to feel hurt because of my words. Hope you understand
+Main jaata hoon, par dil se shukriya kehna chahta hoon.
+Tum meri zindagi ka ek sundar hissa rahi ho — aur hamesha rahogi.
+Main bas yahi chahta hoon ki tum hamesha khush raho, haste raho, aur apni zindagi mein wo sab pao jo tum deserve karti ho.
+Main kabhi bura nahi chahta tha, bas galat samjha gaya.
+Par dil se... thank you, for every smile you gave me. our thora english me hai niche ka voice note and also isko earphone me sunna
+ ”** i still miss you 
+
+— Harsh 🌸" rows="4"></textarea>
+    
+    <div class="audio-controls">
+      <audio id="voice-audio" controls>
+        <source src="audio/your-voice.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+  </div>
+</div>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script src="js/popup.js"></script>
+
+  <button id="cute-gallery-btn" class="cute-btn">
+  📸 Some Photos of Your Cuteness
+</button>
+
+  <!-- Custom JS -->
+  <script src="js/script.js"></script>
+  <script src="script.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script>
+const swiper = new Swiper(".mySwiper", {
+  loop: true,
+  autoplay: { delay: 2500, disableOnInteraction: false },
+  pagination: { el: ".swiper-pagination", clickable: true },
+  navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+  effect: 'fade',
+  fadeEffect: { crossFade: true },
+});
+
+</script>
+
+</body>
+</html>
