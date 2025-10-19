@@ -270,7 +270,3 @@ window.addEventListener("load", () => {
       }, 1500);
     });
   }
-
-  // Initial memory card reveal
-  revealOnScroll();
-});
