@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Special Content</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Special Content — For You</title>
 
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas&display=swap" rel="stylesheet">
 
 <style>
+/* =========================
+   Your original styles
+   (kept and then extended below)
+   =========================*/
+
 /* Smooth Scrolling */
 html { scroll-behavior: smooth; }
 
@@ -133,33 +138,141 @@ h1 {
 .letter::-webkit-scrollbar {
   width: 8px;
 }
-
 .letter::-webkit-scrollbar-track {
   background: #b61515;
   border-radius: 10px;
 }
-
 .letter::-webkit-scrollbar-thumb {
   background: #de73d0;
   border-radius: 10px;
 }
-
 .letter::-webkit-scrollbar-thumb:hover {
   background: #ff69b4;
 }
+
+/* =========================
+   Additions for special feature
+   =========================*/
+
+/* shared hearts background (keeps continuity with index) */
+.hearts-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+  background: radial-gradient(circle at 10% 10%, rgba(255,255,255,0.03), transparent 10%);
+}
+
+/* special section/button */
+.special-wrap { margin: 40px 0 18px; display:flex; justify-content:center; }
+.special-btn {
+  background: linear-gradient(90deg,#ffd6b6,#ffb6c1);
+  color:#111; border:none; padding:12px 22px; border-radius:14px; font-size:1.05rem; cursor:pointer;
+  box-shadow: 0 8px 30px rgba(86,9,46,0.08); transition: transform .25s ease;
+}
+.special-btn:hover { transform: translateY(-4px); }
+
+/* modal plain */
+.modal-plain {
+  position: fixed; inset:0; display:none; justify-content:center; align-items:center; z-index:1200; background: rgba(0,0,0,0.5);
+}
+.modal-plain[aria-hidden="false"] { display:flex; }
+.modal-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.9)); color:#111; padding:20px; border-radius:12px; width: 92%; max-width:420px; text-align:center;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+}
+
+/* theme overlay */
+.theme-overlay {
+  position: fixed; inset:0; z-index:1300; display:none; align-items:center; justify-content:center; pointer-events:none;
+}
+.theme-overlay[aria-hidden="false"] { display:flex; pointer-events:auto; }
+.theme-animation { text-align:center; color:#fff; animation: themePulse 2.5s ease forwards; }
+.overlay-title { font-size:1.6rem; font-weight:600; margin-top:10px; text-shadow: 0 8px 40px rgba(0,0,0,0.5); }
+@keyframes themePulse {
+  0% { transform: scale(.85) rotate(-3deg); opacity:0; }
+  20% { opacity:1; transform: scale(1.05) rotate(2deg); }
+  100% { opacity:1; transform: scale(1) rotate(0); }
+}
+
+/* secret popup (unique theme) */
+.secret-popup {
+  position: fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:1400; background: linear-gradient(180deg, rgba(7,3,19,0.85), rgba(40,6,70,0.85));
+}
+.secret-popup[aria-hidden="false"] { display:flex; }
+.secret-card {
+  width: min(1050px, 96%); max-height:90vh; overflow:auto; border-radius:16px; padding:18px; background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); box-shadow: 0 30px 90px rgba(0,0,0,0.6); position:relative;
+}
+.secret-close { position:absolute; right:18px; top:12px; background:transparent; border:none; color:#fff; font-size:28px; cursor:pointer; }
+
+/* password gate */
+.password-gate { text-align:center; padding:22px; border-radius:12px; background: rgba(255,255,255,0.03); margin-bottom:12px; color:#ffd6e8; }
+.password-gate input { width:60%; padding:10px 12px; border-radius:10px; border:none; margin-top:8px; }
+.pw-actions { display:flex; justify-content:center; gap:10px; margin-top:10px; }
+.hint { margin-top:10px; opacity:0.92; color:#ffd6e8; display:none; }
+
+/* secret content layout */
+.secret-header { display:flex; justify-content:space-between; align-items:center; gap:12px; padding-bottom:12px; border-bottom:1px dashed rgba(255,255,255,0.04); }
+.secret-title { font-family:'Mountains of Christmas', cursive; font-size:1.6rem; color:#fff; margin:0; }
+.to-for-you { background:transparent; color:#ffd6e8; border: 1px solid rgba(255,255,255,0.06); padding:6px 10px; border-radius:8px; }
+
+/* secret-body */
+.secret-body { display:flex; gap:18px; margin-top:16px; }
+.secret-msg-wrap { flex:1; min-width:260px; position:relative; }
+.image-area { width:320px; min-width:240px; }
+
+/* black rose decorative */
+.black-rose {
+  width:64px; height:64px; position:absolute; right:12px; top:12px; background: url('images/black-rose.png') center/contain no-repeat;
+  opacity:0.95; transform:rotate(-14deg); pointer-events:none;
+}
+
+/* scrollable message box */
+.scroll-msg {
+  max-height: 360px; overflow:auto; padding:18px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:12px; color:#fff; font-size:1rem; line-height:1.6;
+  box-shadow: inset 0 -10px 30px rgba(0,0,0,0.25);
+}
+
+/* edit message controls */
+.secret-controls { margin-top:12px; }
+#edit-msg { width:100%; min-height:80px; border-radius:10px; padding:10px; margin-top:8px; background: rgba(255,255,255,0.02); color:#fff; border:none; }
+
+/* drop area */
+.drop-area { height:140px; border-radius:10px; border:2px dashed rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; text-align:center; padding:12px; cursor:pointer; color:#ffd6e8; position:relative; }
+.drop-area input { display:block; width:100%; opacity:0; height:100%; position:absolute; left:0; top:0; cursor:pointer; }
+.preview-area img { max-width:100%; border-radius:10px; margin-top:12px; }
+
+@media (max-width:900px) {
+  .secret-body { flex-direction:column; }
+  .image-area { width:100%; }
+  .drop-area { height:120px; }
+}
+
+/* small shake animation */
+@keyframes shakeX{ 0%{transform:translateX(0)} 20%{transform:translateX(-8px)} 40%{transform:translateX(8px)} 60%{transform:translateX(-6px)} 80%{transform:translateX(4px)} 100%{transform:translateX(0)} }
+.shake { animation: shakeX .6s; }
 </style>
 </head>
 <body>
 
+<!-- ========================
+     Continuous BG MUSIC (keeps playing from index)
+     ======================== -->
+<audio id="bg-music" loop></audio>
+
+<!-- hearts bg (keeps continuity) -->
+<div class="hearts-bg" aria-hidden="true"></div>
+
 <u><h1 class="fade-in">This content is only for you</h1></u>
 
-<button class="open-letter-btn fade-in">📬 A special note for you</button>
+<button class="open-letter-btn fade-in" id="openLetterBtn">📬 A special note for you</button>
 
-<div class="envelope-container fade-in">
-  <div class="envelope"></div>
-  <div class="seal"></div>
+<div class="envelope-container fade-in" aria-hidden="false">
+  <div class="envelope" id="envelopeEl" aria-hidden="true"></div>
+  <div class="seal" id="sealEl"></div>
 
-  <div class="letter">
+  <div class="letter" id="letterEl" aria-hidden="true">
     <!-- Page 1 -->
     <div class="page active">
       <p id="typed-text"></p>
@@ -176,7 +289,7 @@ h1 {
 </div>
 
 <audio id="open-sound" src="sounds/envelope-open.mp3"></audio>
-<div id="confetti-container"></div>
+<div id="confetti-container" aria-hidden="true"></div>
 
 <div class="video-container fade-in">
   <video controls>
@@ -197,61 +310,255 @@ h1 {
   </div>
 </section>
 
+<!-- ======= NEW SPECIAL BUTTON (before Back) ======= -->
+<div class="special-wrap">
+  <button id="specialBtn" class="special-btn">A Special Request</button>
+</div>
 
-<a href="index.html" class="back-btn fade-in">⬅ Back</a>
+<!-- Confirm popup (Yes/No) -->
+<div id="confirmPopup" class="modal-plain" aria-hidden="true">
+  <div class="modal-card">
+    <h3>Do you want to continue?</h3>
+    <p>If you choose <strong>Yes</strong>, a special memory thing or a text apper if you yes and if you tired of my this page and gift you must have to read this  .</p>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:12px;">
+      <button class="special-btn" id="confirmYes">Yes</button>
+      <button class="special-btn" id="confirmNo" style="background:linear-gradient(90deg,#ffd6b6,#ffd6b6);">No</button>
+    </div>
+  </div>
+</div>
+
+<!-- Thanks popup (if No) -->
+<div id="thanksPopup" class="modal-plain" aria-hidden="true">
+  <div class="modal-card">
+    <h3>Thanks for being with me</h3>
+    <p>Thank you for sharing this moment. Your presence means everythingand you ment everything i dont kown why but yes i care  a lottt..........</p>
+    <div style="margin-top:12px;">
+      <button class="special-btn" id="closeThanks">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Theme overlay -->
+<div id="themeOverlay" class="theme-overlay" aria-hidden="true">
+  <div class="theme-animation">
+    <div style="width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,#ffd6b6,#de73d0);box-shadow:0 20px 60px rgba(0,0,0,0.4)"></div>
+    <h2 class="overlay-title">A new memory is being revealed...</h2>
+  </div>
+</div>
+
+<!-- Secret popup (locked) -->
+<div id="secretPopup" class="secret-popup" aria-hidden="true">
+  <div class="secret-card" role="dialog" aria-modal="true">
+    <button class="secret-close" id="secretClose" aria-label="Close">&times;</button>
+
+    <!-- Password gate -->
+    <div id="passwordGate" class="password-gate">
+      <h3>Enter the secret passphrase to open</h3>
+      <input id="secretInput" placeholder="Enter passphrase" />
+      <div class="pw-actions">
+        <button class="special-btn" id="unlockBtn">Unlock</button>
+        <button class="special-btn" id="hintBtn" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:#ffd6e8;">Hint</button>
+      </div>
+      <p class="hint" id="pwHint" aria-hidden="true">Hint: my full birthdate and use this / to enter birthday 33/33/3333 like that ❤️</p>
+    </div>
+
+    <!-- Secret content (hidden until unlocked) -->
+    <div id="secretContent" class="secret-content" aria-hidden="true" style="display:none;">
+      <div class="secret-header">
+        <h2 class="secret-title">For Your Eyes Only 🌹</h2>
+        <button class="to-for-you" id="backToForYou">Back to For You</button>
+      </div>
+
+      <div class="secret-body">
+        <div class="secret-msg-wrap">
+          <div class="black-rose" aria-hidden="true"></div>
+
+          <div class="scroll-msg" id="scrollMsg" tabindex="0" role="region" aria-label="Secret message">
+            <p>
+              See, this is not an ending message because I want to say something or prove anything — it s because somewhere you started saying things about yourself that I could never even imagine. In fact, even in my dreams, whenever I saw you, you always appeared a thousand times better than anyone else. So how could I ever think like that 😅
+              <br><br>
+That day on your birthday… the way our conversation went, I realized I ended up rejecting myself — not just as a friend, but even as your best friend. I really wanted to stay with you, yrr, but not by constantly making you upset, angry, or irritated. I don t want you to hold on to me out of force or pity. I can t bear the thought that my behavior or words might hurt you or disturb your peace.
+After thinking a lot, I understood — friendship doesn t work like that. Honestly, I don t even know if you understood me completely, but you were always supportive, always there. You tried to explain things to me so many times — it was me who didn t listen. I thought maybe you also felt the same way when you didn t listen to me, but maybe I was wrong. I don t even know what exactly I should say now.
+<br><br>
+That day when I heard those words from you — about me — I swear, it felt like I killed a part of myself inside 💔 thinking, “What did I do? Why did I do it?” I ruined your whole birthday — that one special day in a year — in just one moment. And for that, I m really sorry. Truly.
+
+I never wanted that to happen. That person came, said something, and I didn t even realize it would turn into a fight.
+Even though we re no longer in touch, I still wish you all the happiness in the world. Focus on your studies, on your future.
+<br><br>
+And maybe I shouldn t say this, but still — sorry again. If you ever find someone in life, and you don,t love him but he loves you, please be careful. Because I know — when a girl truly gets attached, she gives her all. But if a boy isn t serious, he ll just play around. So, take care and live your life fully 💫 Forget about me — whether I live or not, it doesn t matter.
+
+If one day I achieve something — and I m trying hard for that — I really wish that no matter where you are, I could meet you once, just once, to say thank you.
+
+Lastly, this project was completed on 16th October, but I m sending this now because I know you re going to Kolkata. I don t want you to think that I m trying to force my way back or disturb you. You were the one who chose to break everything, and I respect that. You did what was right for you — for your focus, your pride, and your career. So how could I ever go against that?
+
+We spent a lot of time together — and those are memories I ll always carry, with a smile 🙂
+Thank you for being there, for everything.
+<br><br>
+And yes… I know what destiny means.
+I ve decided — within the next six years, I ll either be gone or Ill become the most successful version of myself ever.
+ 
+Take care of yourself — eat well, study hard, and stay happy.
+Miss you a lot… ❤
+            <p>
+              (This area is scrollable — long messages will scroll inside this box.)
+            </p>
+            <p>
+              Love, Harsh.
+            </p>
+          </div>
+
+          <div class="secret-controls">
+            <label for="editMsg" style="color:#ffd6e8;">Edit message (for Harsh only)</label>
+            <textarea id="editMsg" placeholder="You can update the secret message here..."></textarea>
+            <div style="margin-top:8px;"><button class="special-btn" id="saveSecretMsg">Save</button></div>
+          </div>
+        </div>
+
+        <div class="image-area">
+          <h4 style="color:#ffd6e8;">Add a memory image</h4>
+          <div id="dropArea" class="drop-area">
+            <p>Drag & drop image here or click to select</p>
+            <input type="file" id="fileElem" accept="image/*" />
+          </div>
+          <div id="previewArea" class="preview-area"></div>
+          <div style="margin-top:10px;"><button class="special-btn" id="clearPreview">Clear</button></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer Back -->
+<a href="index.html" class="back-btn fade-in" id="backLink">⬅ Back</a>
 
 <script>
-// Elements
-const btn = document.querySelector('.open-letter-btn');
-const envelope = document.querySelector('.envelope');
-const letter = document.querySelector('.letter');
-const seal = document.querySelector('.seal');
-const confettiContainer = document.getElementById('confetti-container');
-const audio = document.getElementById('open-sound');
+/* =========================
+   Initialization & merging scripts
+   - keeps your original logic
+   - adds special-button flow, password gate, secret content, drop area, confetti
+   - adds continuous bg music logic (reads localStorage set by index.html)
+   =========================*/
+
+/* ---------- Continuous BG MUSIC ----------
+   index.html should set localStorage 'bgMusicSrc' to the music URL.
+   Example in index.html:
+     localStorage.setItem('bgMusicSrc', document.getElementById('bg-music').src);
+*/
+(function initBackgroundMusic(){
+  const bg = document.getElementById('bg-music');
+  const stored = localStorage.getItem('bgMusicSrc');
+  if(stored){
+    bg.src = stored;
+    bg.volume = 0.45;
+    // attempt to play (browsers may block until interaction)
+    bg.play().catch(()=>{ /* will play after user gesture */ });
+  } else {
+    // fallback: set your default audio file if needed
+    bg.src = "music/bg.mp3";
+    bg.volume = 0.45;
+    bg.play().catch(()=>{});
+  }
+})();
+
+/* ---------- Floating hearts generator (simple) ---------- */
+(function startHearts(){
+  const root = document.querySelector('.hearts-bg');
+  if(!root) return;
+  function spawn(){
+    const el = document.createElement('div');
+    el.className = 'heart';
+    // basic inline style because we didn't include heart class earlier
+    Object.assign(el.style, {
+      left: Math.random()*100 + 'vw',
+      width: (8 + Math.random()*18) + 'px',
+      height: (8 + Math.random()*18) + 'px',
+      top: '110vh',
+      opacity: 0.9,
+      transform: 'translateY(0) rotate(' + (Math.random()*60-30) + 'deg)',
+      transition: 'transform ' + (6 + Math.random()*6) + 's linear, opacity 6s linear'
+    });
+    // heart shape via clip-path
+    el.style.background = 'linear-gradient(180deg, rgba(255,182,193,0.9), rgba(230,176,255,0.9))';
+    el.style.position = 'absolute';
+    el.style.borderRadius = '8px';
+    el.style.clipPath = 'polygon(50% 0%, 100% 35%, 80% 100%, 20% 100%, 0% 35%)';
+    root.appendChild(el);
+    // animate
+    requestAnimationFrame(()=> {
+      el.style.transform = 'translateY(-130vh) rotate(' + (Math.random()*720-360) + 'deg) scale(1.05)';
+      el.style.opacity = 0;
+    });
+    setTimeout(()=> el.remove(), 12000);
+  }
+  setInterval(spawn, 700);
+})();
+
+/* ---------- Your original letter / typing / envelope logic (merged) ---------- */
+const openBtn = document.getElementById('openLetterBtn');
+const envelope = document.getElementById('envelopeEl');
+const letter = document.getElementById('letterEl');
+const seal = document.getElementById('sealEl');
+const openSound = document.getElementById('open-sound');
 let confettiDone = false;
 
-// Pages
+// Pages logic
 const pages = document.querySelectorAll('.page');
 let currentPage = 0;
 const nextBtn = document.getElementById('next');
 const prevBtn = document.getElementById('prev');
 
 // Typing effect
-function typeText(elementId, text, speed=30){
+function typeText(elementId, text, speed=20){
   const el = document.getElementById(elementId);
-  el.textContent='';
-  let i=0;
-  function type(){ if(i<text.length){ el.textContent+=text.charAt(i); i++; setTimeout(type,speed); } }
-  type();
+  if(!el) return;
+  el.textContent = '';
+  let i = 0;
+  (function type(){
+    if(i < text.length){
+      el.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  })();
 }
 
-// Confetti
-function createConfetti(){
-  for(let i=0;i<100;i++){
-    const c=document.createElement('div');
-    c.classList.add('confetti-piece');
-    const colors=['#f59fd4','#de73d0','#ff69b4','#ffffff','#ff1493'];
-    c.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];
-    c.style.left=Math.random()*100+'vw';
-    c.style.top='-10px';
-    c.style.width=c.style.height=5+Math.random()*10+'px';
-    confettiContainer.appendChild(c);
-    c.animate([{transform:`translateY(0) rotate(0deg)`, opacity:1},{transform:`translateY(${window.innerHeight+100}px) rotate(${Math.random()*720}deg)`, opacity:0}], {duration:3000+Math.random()*2000, iterations:1, easing:'ease-out'});
-    setTimeout(()=>c.remove(),5000);
+// Confetti DOM burst
+function createConfetti(x = window.innerWidth/2, y = 200, count = 80){
+  for(let i=0;i<count;i++){
+    const c = document.createElement('div');
+    c.className = 'confetti-piece';
+    const colors = ['#f59fd4','#de73d0','#ff69b4','#ffffff','#ff1493','#ffd6b6'];
+    const size = 6 + Math.random()*10;
+    c.style.width = size + 'px';
+    c.style.height = size + 'px';
+    c.style.background = colors[Math.floor(Math.random()*colors.length)];
+    c.style.left = (x + (Math.random()*300-150)) + 'px';
+    c.style.top = (y + (Math.random()*80-40)) + 'px';
+    c.style.zIndex = 2200;
+    c.style.position = 'fixed';
+    document.body.appendChild(c);
+    // animate
+    const dy = 300 + Math.random()*400;
+    const dx = (Math.random()*500-250);
+    c.animate([{ transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
+               { transform: `translate(${dx}px, ${dy}px) rotate(${Math.random()*720}deg)`, opacity: 0 }],
+               { duration: 1300 + Math.random()*900, easing: 'cubic-bezier(.2,.8,.2,1)'});
+    setTimeout(()=> c.remove(), 2200);
   }
 }
 
 // Open letter
-btn.addEventListener('click',()=>{
+openBtn.addEventListener('click', () => {
   envelope.classList.add('open');
   letter.classList.add('show');
   seal.classList.add('break');
-  audio.play();
-  if(!confettiDone){ createConfetti(); confettiDone=true; }
+  openSound.play().catch(()=>{});
+  if(!confettiDone){ createConfetti(window.innerWidth/2, 200, 80); confettiDone = true; }
 
   const page2Text = "🌸 May all your dreams come true! Keep smiling and shining ✨ Remember, you're amazing!";
-  typeText('typed-text', page1Text);
-  typeText('typed-text2', page2Text);
+  typeText('typed-text', page1Text, 18);
+  typeText('typed-text2', page2Text, 22);
 });
 
 const page1Text = `I m not writing this for you to read — this is just something I need to say, so my heart can
@@ -273,7 +580,7 @@ really hurt. I wasn t trying to fight or argue — I was just trying to express 
 Maybe I couldn t say things the right way every time, but my intention was never to create
 problems. I just wanted you to understand me, not misunderstand me. I hope one day you
 realize that what I said came from care, not from anger.
-I m not angry, and I don t hate you. I just miss the simplicity we once had — two friends
+I m not angry, and I d don t hate you. I just miss the simplicity we once had — two friends
 who understood each other. You ll always have my respect and care, even if we never talk
 again.
 Sometimes love isn t about being together — it s about being thankful for what you shared.
@@ -281,21 +588,23 @@ So, thank you for being part of my life, Rani. You ll always be remembered with 
 — Harsh`;
 
 // Page navigation
-nextBtn.addEventListener('click',()=>{
-  pages[currentPage].classList.remove('active');
-  currentPage=(currentPage+1)%pages.length;
-  pages[currentPage].classList.add('active');
-});
-prevBtn.addEventListener('click',()=>{
-  pages[currentPage].classList.remove('active');
-  currentPage=(currentPage-1+pages.length)%pages.length;
-  pages[currentPage].classList.add('active');
-});
+if(nextBtn && prevBtn){
+  nextBtn.addEventListener('click', ()=>{
+    pages[currentPage].classList.remove('active');
+    currentPage = (currentPage + 1) % pages.length;
+    pages[currentPage].classList.add('active');
+  });
+  prevBtn.addEventListener('click', ()=>{
+    pages[currentPage].classList.remove('active');
+    currentPage = (currentPage - 1 + pages.length) % pages.length;
+    pages[currentPage].classList.add('active');
+  });
+}
 
-// Click outside to close
-document.addEventListener('click',(e)=>{
+// click outside to close letter
+document.addEventListener('click', (e) => {
   if(letter.classList.contains('show')){
-    if(!letter.contains(e.target) && !btn.contains(e.target)){
+    if(!letter.contains(e.target) && !openBtn.contains(e.target)){
       envelope.classList.remove('open');
       letter.classList.remove('show');
       seal.classList.remove('break');
@@ -303,10 +612,181 @@ document.addEventListener('click',(e)=>{
   }
 });
 
-// Stagger fade-in delays
+// stagger fade-in
 const fadeElems = document.querySelectorAll('.fade-in');
 fadeElems.forEach((el, i) => { el.style.animationDelay = `${i * 0.3}s`; });
-</script>
 
+/* ---------- Special button flow (confirm, no->thanks, yes->theme->secret) ---------- */
+const specialBtn = document.getElementById('specialBtn');
+const confirmPopup = document.getElementById('confirmPopup');
+const thanksPopup = document.getElementById('thanksPopup');
+const confirmYes = document.getElementById('confirmYes');
+const confirmNo = document.getElementById('confirmNo');
+const closeThanks = document.getElementById('closeThanks');
+const themeOverlay = document.getElementById('themeOverlay');
+const secretPopup = document.getElementById('secretPopup');
+
+specialBtn.addEventListener('click', () => {
+  confirmPopup.setAttribute('aria-hidden', 'false');
+});
+
+confirmNo.addEventListener('click', () => {
+  confirmPopup.setAttribute('aria-hidden', 'true');
+  // show thanks
+  thanksPopup.setAttribute('aria-hidden', 'false');
+  createConfetti(window.innerWidth/2, 200, 60);
+});
+closeThanks.addEventListener('click', () => {
+  thanksPopup.setAttribute('aria-hidden', 'true');
+});
+
+// on yes
+confirmYes.addEventListener('click', () => {
+  confirmPopup.setAttribute('aria-hidden', 'true');
+  // show theme overlay
+  themeOverlay.setAttribute('aria-hidden', 'false');
+  // small theme flicker + confetti
+  createConfetti(window.innerWidth/2, 200, 90);
+  // temporary body class to change look (we use it for a moment)
+  document.body.style.transition = 'background 0.9s ease';
+  document.body.style.background = 'linear-gradient(120deg,#fde3f3,#2d1a6f 80%)';
+  setTimeout(() => {
+    themeOverlay.setAttribute('aria-hidden', 'true');
+    openSecretPopup();
+  }, 1800);
+});
+
+/* ---------- Secret popup logic ---------- */
+const secretClose = document.getElementById('secretClose');
+const passwordGate = document.getElementById('passwordGate');
+const secretInput = document.getElementById('secretInput');
+const unlockBtn = document.getElementById('unlockBtn');
+const hintBtn = document.getElementById('hintBtn');
+const pwHint = document.getElementById('pwHint');
+const secretContent = document.getElementById('secretContent');
+const scrollMsg = document.getElementById('scrollMsg');
+const editMsg = document.getElementById('editMsg');
+const saveSecretMsg = document.getElementById('saveSecretMsg');
+const backToForYou = document.getElementById('backToForYou');
+const fileElem = document.getElementById('fileElem');
+const dropArea = document.getElementById('dropArea');
+const previewArea = document.getElementById('previewArea');
+const clearPreviewBtn = document.getElementById('clearPreview');
+
+// set your secret passphrase here:
+let secretPass = '28/04/2005'; // <-- CHANGE this to your desired passphrase
+
+function openSecretPopup(){
+  secretPopup.setAttribute('aria-hidden', 'false');
+  // show password gate, hide content
+  passwordGate.style.display = 'block';
+  pwHint.style.display = 'none';
+  secretContent.style.display = 'none';
+  secretContent.setAttribute('aria-hidden', 'true');
+  // clear input
+  secretInput.value = '';
+  secretInput.focus();
+}
+
+function closeSecretPopup(){
+  secretPopup.setAttribute('aria-hidden', 'true');
+}
+secretClose.addEventListener('click', closeSecretPopup);
+backToForYou.addEventListener('click', closeSecretPopup);
+
+// reveal hint
+hintBtn.addEventListener('click', () => {
+  pwHint.style.display = 'block';
+});
+
+// check pass
+unlockBtn.addEventListener('click', () => {
+  const val = (secretInput.value || '').trim();
+  if(val.length === 0) {
+    secretInput.classList.add('shake');
+    setTimeout(()=> secretInput.classList.remove('shake'), 600);
+    return;
+  }
+  if(val === secretPass){
+    // unlock: hide gate, show secret content
+    passwordGate.style.display = 'none';
+    secretContent.style.display = 'block';
+    secretContent.setAttribute('aria-hidden', 'false');
+    createConfetti(window.innerWidth*0.6, window.innerHeight*0.35, 80);
+  } else {
+    secretInput.classList.add('shake');
+    setTimeout(()=> secretInput.classList.remove('shake'), 600);
+    // small feedback
+    const warn = document.createElement('div');
+    warn.textContent = 'Incorrect passphrase — try again.';
+    warn.style.color = '#ffd6e8';
+    warn.style.marginTop = '8px';
+    passwordGate.appendChild(warn);
+    setTimeout(()=> warn.remove(), 2200);
+  }
+});
+
+/* Save secret message (append to scroll and clear editor) */
+saveSecretMsg.addEventListener('click', () => {
+  const v = (editMsg.value || '').trim();
+  if(!v) return;
+  const p = document.createElement('p');
+  p.textContent = v;
+  scrollMsg.appendChild(p);
+  scrollMsg.scrollTop = scrollMsg.scrollHeight;
+  editMsg.value = '';
+  createConfetti(window.innerWidth*0.6, window.innerHeight*0.35, 30);
+});
+
+/* ---------- Drop area for images ---------- */
+(function bindDropArea(){
+  if(!dropArea || !fileElem || !previewArea) return;
+  dropArea.addEventListener('click', () => fileElem.click());
+  ['dragenter','dragover'].forEach(ev=>{
+    dropArea.addEventListener(ev, (e)=>{
+      e.preventDefault(); dropArea.style.borderColor = '#ffd6e8';
+    });
+  });
+  ['dragleave','drop'].forEach(ev=>{
+    dropArea.addEventListener(ev, (e)=>{
+      e.preventDefault(); dropArea.style.borderColor = 'rgba(255,255,255,0.06)';
+    });
+  });
+  dropArea.addEventListener('drop', (e)=>{
+    e.preventDefault();
+    const dt = e.dataTransfer;
+    handleFiles(dt.files);
+  });
+  fileElem.addEventListener('change', (e)=> handleFiles(e.target.files));
+
+  function handleFiles(files){
+    if(!files || files.length === 0) return;
+    const f = files[0];
+    if(!f.type.startsWith('image/')) { alert('Please select an image file.'); return; }
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      previewArea.innerHTML = '';
+      const img = document.createElement('img');
+      img.src = ev.target.result;
+      img.style.maxWidth = '100%';
+      img.style.borderRadius = '10px';
+      previewArea.appendChild(img);
+      createConfetti(window.innerWidth*0.7, window.innerHeight*0.35, 20);
+    };
+    reader.readAsDataURL(f);
+  }
+})();
+clearPreviewBtn.addEventListener('click', ()=> { if(previewArea) previewArea.innerHTML = ''; });
+
+/* small helper: close plain modals by clicking outside */
+document.addEventListener('click', (e) => {
+  const t = e.target;
+  if(t === document.getElementById('thanksPopup')) thanksPopup.setAttribute('aria-hidden','true');
+  if(t === document.getElementById('confirmPopup')) confirmPopup.setAttribute('aria-hidden','true');
+  // don't close secretPopup by outside click (to avoid accidental close)
+});
+
+/* End of merged scripts */
+</script>
 </body>
 </html>
