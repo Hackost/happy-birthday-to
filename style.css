@@ -891,3 +891,88 @@ body {
   50% { opacity: 1; }
   100% { transform: translateY(-10vh) scale(1) rotate(360deg); opacity: 0; }
 }
+
+
+/* 🌸 Desktop Reminder Popup with Floating Hearts */
+.desktop-reminder {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.8s ease;
+  overflow: hidden;
+}
+
+.reminder-box {
+  background: linear-gradient(145deg, #ffc0f0, #de73d0);
+  color: black;
+  padding: 25px 25px 35px;
+  border-radius: 25px;
+  text-align: center;
+  width: 90%;
+  max-width: 350px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  font-family: 'Mountains of Christmas', cursive;
+  animation: popupZoom 0.8s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.reminder-box h3 {
+  margin-top: 0;
+  font-size: 1.8rem;
+}
+
+.reminder-box p {
+  font-size: 1.1rem;
+  margin: 15px 0 25px;
+}
+
+#close-reminder {
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+#close-reminder:hover {
+  transform: scale(1.05);
+  background: #333;
+}
+
+/* 💕 Floating Hearts Animation */
+.reminder-hearts {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.heart-particle {
+  position: absolute;
+  font-size: 18px;
+  animation: floatHeart 5s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(100vh) scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1.4);
+    opacity: 0;
+  }
+}
