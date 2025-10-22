@@ -255,3 +255,32 @@ noBtn.addEventListener('click', () => {
     window.location.href = "about:blank"; // fallback
   }, 1500);
 });
+
+// 📱 Desktop Mode Reminder with Floating Hearts
+window.addEventListener('load', () => {
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const reminder = document.getElementById('desktop-reminder');
+  const closeBtn = document.getElementById('close-reminder');
+  const heartContainer = document.querySelector('.reminder-hearts');
+
+  // Show reminder only on mobile
+  if (isMobile) {
+    reminder.style.display = 'flex';
+
+    // 🌸 Create floating hearts
+    for (let i = 0; i < 25; i++) {
+      const heart = document.createElement('span');
+      heart.classList.add('heart-particle');
+      heart.textContent = ['💖', '💞', '💕'][Math.floor(Math.random() * 3)];
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      heart.style.fontSize = Math.random() * 20 + 14 + 'px';
+      heartContainer.appendChild(heart);
+    }
+  }
+
+  // Close button
+  closeBtn.addEventListener('click', () => {
+    reminder.style.display = 'none';
+  });
+});
