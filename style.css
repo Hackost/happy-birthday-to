@@ -2,12 +2,12 @@
    GLOBAL STYLES
    ======================= */
 body {
-  background: #de73d0;
+  background: #f0a4e6;
   background: linear-gradient(
     90deg,
-    rgba(222, 115, 208, 1) 48%,
-    rgb(66, 113, 194) 100%,
-    rgba(245, 0, 212, 1) 100%
+    rgb(246, 185, 237) 48%,
+    rgba(233, 138, 174, 0.966) 100%,
+    rgb(234, 144, 223) 100%
   );
   color: #000;
   font-family: "Mountains of Christmas", cursive;
@@ -976,3 +976,4 @@ body {
     opacity: 0;
   }
 }
+
